@@ -9,6 +9,22 @@
         '</svg>'
     ].join("");
     
+        var SVG_HTML_TEMPLATE_TOP      = [
+        '<svg width="50" height="50" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">',
+        ' <g>',
+        '  <path name="top" stroke-width="5" stroke="#000000" fill="yellow" d="m60,10a50,50 0 1 0 0,0"/>',
+        ' </g>',
+        '</svg>'
+    ].join("");
+    
+    var SVG_HTML_TEMPLATE_BOTTOM      = [
+        '<svg width="50" height="50" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">',
+        ' <g>',
+        '  <path name="bottom" stroke-width="5" stroke="#000000" fill="yellow" d="m60,10a50,50 0 1 0 0,0"/>',
+        ' </g>',
+        '</svg>'
+    ].join("");
+    
     var Eye = function( imageSelector, options ) { 
         var self = this;
                         
@@ -27,7 +43,8 @@
             "y"         : 0,
             "size"      : 50,
             "appleSize" : 12,
-            "color"     : "#FFFFFF"
+            "color"     : "#FFFFFF",
+            "emoteColor": "white"
         };
 
         // Replace default optinos
@@ -43,14 +60,21 @@
         
         this.cloneEyeObject = ParanoiaJS._cloneTemplate();     
         
-        this.svgElement   = this.cloneEyeObject.querySelector("svg");
+        this.svgElements   = this.cloneEyeObject.querySelectorAll("svg");
         this.eyeElement   = this.cloneEyeObject.querySelector("[name=eye]");
         this.appleElement = this.cloneEyeObject.querySelector("[name=apple]");
-                            
-        this.svgElement.setAttribute("width" , this.options["size"]);
-        this.svgElement.setAttribute("height", this.options["size"]);
+        this.topElement = this.cloneEyeObject.querySelector("[name=top]");
+        this.bottomElement = this.cloneEyeObject.querySelector("[name=bottom]");       
+        
+        for (i = 0; i < this.svgElements.length; i++) {
+            this.svgElements[i].setAttribute("width" , this.options["size"]);
+            this.svgElements[i].setAttribute("height", this.options["size"]);
+        }
+           
         
         this.eyeElement.setAttribute("fill", this.options["color"]);
+        this.topElement.setAttribute("fill", this.options["emoteColor"]);
+        this.bottomElement.setAttribute("fill", this.options["emoteColor"]);
         
         this.appleElement.setAttribute("r", this.options["appleSize"]);
         
@@ -64,6 +88,29 @@
     
     Eye.prototype.moveToPosition = function() {           
         this.move( this.options["x"], this.options["y"] );   
+    }
+    
+    Eye.prototype.suspicion = function(x, y){
+        console.clear();
+        var minSuspicion = 1000;
+        var cloneEyeObjectPos = this.eyeElement.getBoundingClientRect();
+        var x1 = cloneEyeObjectPos.left + cloneEyeObjectPos.width/2;
+        var y1 = cloneEyeObjectPos.top  + cloneEyeObjectPos.height/2; 
+        var len = Math.pow(Math.pow(x1-x,2) + Math.pow(y1-y,2), 1/2);
+        var angle = Math.PI/2;
+        if(len <= minSuspicion){
+            var angle = Math.PI/2 - ((1-len/minSuspicion) *  7*Math.PI/18);   
+        }
+        var xr = 60 + (Math.cos(-angle) * 50 );
+        var yr = 60 + (Math.sin(-angle) * 50 );
+        var xr2 = (xr - 60);
+        var yr2 = (60 + (60 - yr));
+        var d = "m"+xr+","+yr+"a50,50 1 0 0 "+(-xr2*2)+",0z";
+        this.topElement.setAttribute('d', d);
+
+        var d2 = "m"+xr+","+yr2+"a50,50 1 0 1 "+(-xr2*2)+",0z";
+        this.bottomElement.setAttribute('d', d2);
+        
     }
         
     // Relactive to parent image
@@ -122,6 +169,7 @@
         this._renderEyes = function( x, y ) {
             for( var idx in self._eyes ) {
                 self._eyes[idx].render( x, y );
+                self._eyes[idx].suspicion( x, y);
             }
         }
         
@@ -134,9 +182,25 @@
         this._init = function( callback ) {
             self.templateObject = document.createElement("object");
             self.templateObject.style.display  = "none";
-            self.templateObject.style.position = "absolute";            
+            self.templateObject.style.position = "absolute";    
             
-            self.templateObject.innerHTML = SVG_HTML_TEMPLATE;
+            var eyeObject = document.createElement("object");
+            eyeObject.style.position = "absolute";    
+            eyeObject.innerHTML = SVG_HTML_TEMPLATE;
+            self.templateObject.appendChild(eyeObject);
+            
+            var topObject = document.createElement("div");
+
+            topObject.className += topObject.className ? ' top' : 'top';
+            topObject.style.position = "absolute";    
+            topObject.innerHTML = SVG_HTML_TEMPLATE_TOP;
+            self.templateObject.appendChild(topObject);
+            
+            var bottomObject = document.createElement("div");
+            bottomObject.className += bottomObject.className ? ' bottom' : 'bottom';
+            bottomObject.style.position = "absolute";   
+            bottomObject.innerHTML = SVG_HTML_TEMPLATE_BOTTOM;
+            self.templateObject.appendChild(bottomObject);
             
             document.body.appendChild( self.templateObject );
             

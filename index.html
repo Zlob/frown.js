@@ -3,7 +3,7 @@
 <head>
     <title></title>
     <script src="//code.jquery.com/jquery-2.1.3.min.js"></script>
-    <script src="paranoia.min.js"></script>
+    <script src="paranoia.js"></script>
 </head>
 <body>   
        
@@ -13,6 +13,7 @@
         <br/>
         <img id="img3" src="demo/djoker.jpg" style="">
         <img id="img4" src="demo/lyamur.jpg" style="">
+        <img id="img4" src="demo/homer.jpg" style="">
     </div>
     
     <script>        
@@ -20,12 +21,14 @@
         $(window).load(function() {
             ParanoiaJS.add( "#img1", {
                 x : 60,
-                y : 30,            
+                y : 30, 
+                emoteColor: "#F7B6A4"
             } );        
 
             ParanoiaJS.add( "#img1", {
                 x : 115,
-                y : 30
+                y : 30,
+                emoteColor: "#F7B6A4"
             } );        
 
             
@@ -33,14 +36,16 @@
                 x : 75,
                 y : 100,        
                 size : 60,
-                appleSize : 23
+                appleSize : 23,
+                emoteColor: "#D0C9BF"
             } );
 
             ParanoiaJS.add( "#img2", {
                 x : 20,
                 y : 100,
                 size : 60,
-                appleSize : 23
+                appleSize : 23,
+                emoteColor: "#D0C9BF"
             } );
 
             ParanoiaJS.add( "#img3", {
@@ -48,30 +53,48 @@
                 y : 250,
                 size : 100,
                 appleSize : 20,
-                color : "#FD3E41"
+                color : "#FD3E41",
+                emoteColor: "#443F27"
             } );
 
             ParanoiaJS.add( "#img3", {
                 x : 300,
                 y : 250,
                 size : 100,
-                color : "#FD3E41"
+                color : "#FD3E41",
+                emoteColor: "#443F27"
             } );
 
             ParanoiaJS.add( "#img4", {
                 x : 240,
                 y : 120,
                 size : 80,
-                appleSize : 30
+                appleSize : 30,
+                emoteColor : "#9B8260"
             } );
 
             ParanoiaJS.add( "#img4", {
                 x : 345,
                 y : 120,
                 size : 70,
-                appleSize : 30
+                appleSize : 30,
+                emoteColor : "#9B8260"
             } );
-            
+            ParanoiaJS.add( "#img4", {
+                x : 685,
+                y : 279,
+                size : 35,
+                appleSize : 20,
+                emoteColor : "#9B8260"
+            } );
+
+            ParanoiaJS.add( "#img4", {
+                x : 711,
+                y : 279,
+                size : 38,
+                appleSize : 20,
+                emoteColor : "#9B8260"
+            } );
         });
         
         
