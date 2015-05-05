@@ -58,9 +58,12 @@
     Eye.prototype._build = function() {
         var self = this;
         
-        this.cloneEyeObject = ParanoiaJS._cloneTemplate();     
+        this.cloneEyeObject = ParanoiaJS._cloneTemplate();    
+        this.cloneEyeObject.setAttribute("width" , this.options["size"]);
+        this.cloneEyeObject.setAttribute("height", this.options["size"]);
         
         this.svgElements   = this.cloneEyeObject.querySelectorAll("svg");
+        this.mainElement   = this.cloneEyeObject.querySelector("[name=eye]");
         this.eyeElement   = this.cloneEyeObject.querySelector("[name=eye]");
         this.appleElement = this.cloneEyeObject.querySelector("[name=apple]");
         this.topElement = this.cloneEyeObject.querySelector("[name=top]");
@@ -91,9 +94,8 @@
     }
     
     Eye.prototype.suspicion = function(x, y){
-        console.clear();
         var minSuspicion = 1000;
-        var cloneEyeObjectPos = this.eyeElement.getBoundingClientRect();
+        var cloneEyeObjectPos = this.cloneEyeObject.getBoundingClientRect();
         var x1 = cloneEyeObjectPos.left + cloneEyeObjectPos.width/2;
         var y1 = cloneEyeObjectPos.top  + cloneEyeObjectPos.height/2; 
         var len = Math.pow(Math.pow(x1-x,2) + Math.pow(y1-y,2), 1/2);
@@ -189,15 +191,12 @@
             eyeObject.innerHTML = SVG_HTML_TEMPLATE;
             self.templateObject.appendChild(eyeObject);
             
-            var topObject = document.createElement("div");
-
-            topObject.className += topObject.className ? ' top' : 'top';
+            var topObject = document.createElement("object");
             topObject.style.position = "absolute";    
             topObject.innerHTML = SVG_HTML_TEMPLATE_TOP;
             self.templateObject.appendChild(topObject);
             
-            var bottomObject = document.createElement("div");
-            bottomObject.className += bottomObject.className ? ' bottom' : 'bottom';
+            var bottomObject = document.createElement("object");
             bottomObject.style.position = "absolute";   
             bottomObject.innerHTML = SVG_HTML_TEMPLATE_BOTTOM;
             self.templateObject.appendChild(bottomObject);
