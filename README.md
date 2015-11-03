@@ -1,4 +1,4 @@
-Simple and funny library that adds eyes that follow your cursor. There are no dependencies. Checkout [demo](https://krustnic.github.io/paranoia.js)
+Simple and funny library that adds eyes that follow your cursor. There are no dependencies. Checkout [demo](https://zlob.github.io/paranoia.js)
 
 Usage:
 
