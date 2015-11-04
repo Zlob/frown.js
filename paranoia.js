@@ -4,7 +4,7 @@
         '<svg width="50" height="50" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">',
         ' <g>',
         '  <circle name="eye"   fill="#ffffff" stroke="#000000" stroke-width="5" cx="60" cy="60" r="50" />',
-        '  <circle name="apple" fill="#000000" stroke="#000000" stroke-width="5" stroke-linejoin="null" stroke-linecap="null" cx="80" cy="60" r="12"/>',
+        '  <circle name="eyeball" fill="#000000" stroke="#000000" stroke-width="5" stroke-linejoin="null" stroke-linecap="null" cx="80" cy="60" r="12"/>',
         ' </g>',
         '</svg>'
     ].join("");
@@ -42,9 +42,9 @@
             "x"         : 0,
             "y"         : 0,
             "size"      : 50,
-            "appleSize" : 12,
+            "eyeballSize" : 12,
             "color"     : "#FFFFFF",
-            "emoteColor": "white"
+            "eyelidColor": "white"
         };
 
         // Replace default optinos
@@ -65,7 +65,7 @@
         this.svgElements   = this.cloneEyeObject.querySelectorAll("svg");
         this.mainElement   = this.cloneEyeObject.querySelector("[name=eye]");
         this.eyeElement   = this.cloneEyeObject.querySelector("[name=eye]");
-        this.appleElement = this.cloneEyeObject.querySelector("[name=apple]");
+        this.eyeballElement = this.cloneEyeObject.querySelector("[name=eyeball]");
         this.topElement = this.cloneEyeObject.querySelector("[name=top]");
         this.bottomElement = this.cloneEyeObject.querySelector("[name=bottom]");       
         
@@ -76,10 +76,10 @@
            
         
         this.eyeElement.setAttribute("fill", this.options["color"]);
-        this.topElement.setAttribute("fill", this.options["emoteColor"]);
-        this.bottomElement.setAttribute("fill", this.options["emoteColor"]);
+        this.topElement.setAttribute("fill", this.options["eyelidColor"]);
+        this.bottomElement.setAttribute("fill", this.options["eyelidColor"]);
         
-        this.appleElement.setAttribute("r", this.options["appleSize"]);
+        this.eyeballElement.setAttribute("r", this.options["eyeballSize"]);
         
         document.body.appendChild( this.cloneEyeObject );
 
@@ -132,7 +132,7 @@
                 
         var angle = Math.atan2( y2 - y1, x2 - x1 ) * (180/Math.PI) ;
 
-        this.appleElement.setAttribute( "transform", "rotate(" + angle + ", 60, 60)" );        
+        this.eyeballElement.setAttribute( "transform", "rotate(" + angle + ", 60, 60)" );        
     }
     
     window.ParanoiaJS = new (function() {
