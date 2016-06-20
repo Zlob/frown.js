@@ -44,7 +44,9 @@
             "size"      : 50,
             "appleSize" : 12,
             "color"     : "#FFFFFF",
-            "emoteColor": "white"
+            "emoteColor": "white",
+            "borderColor" : "#000000",
+            'borderSize' : '5'
         };
 
         // Replace default optinos
@@ -76,8 +78,16 @@
            
         
         this.eyeElement.setAttribute("fill", this.options["color"]);
+        this.topElement.setAttribute("stroke", this.options["borderColor"]);
+        this.topElement.setAttribute("stroke-width", this.options["borderSize"]);
+        
         this.topElement.setAttribute("fill", this.options["emoteColor"]);
+        this.topElement.setAttribute("stroke", this.options["borderColor"]);
+        this.topElement.setAttribute("stroke-width", this.options["borderSize"]);
+        
         this.bottomElement.setAttribute("fill", this.options["emoteColor"]);
+        this.bottomElement.setAttribute("stroke", this.options["borderColor"]);
+        this.bottomElement.setAttribute("stroke-width", this.options["borderSize"]);
         
         this.appleElement.setAttribute("r", this.options["appleSize"]);
         
@@ -164,6 +174,24 @@
             return eye;
         }
         
+        this.addPair = function( imageSelector, options ) {
+            if ( !self.isInitialized ) self._init();
+            var eyes = {};
+
+            var leftEyeOptions = JSON.parse(JSON.stringify(options));
+            leftEyeOptions.x = leftEyeOptions.x - leftEyeOptions.l / 2;
+            delete leftEyeOptions['l']; 
+            var leftEye = this.add(imageSelector, leftEyeOptions); 
+            eyes.leftEye = leftEye;
+            
+            var rightEyeOptions = JSON.parse(JSON.stringify(options));
+            rightEyeOptions.x = rightEyeOptions.x + rightEyeOptions.l / 2;
+            delete leftEyeOptions['l']; 
+            var rightEye = this.add(imageSelector, rightEyeOptions);  
+            eyes.rightEye = rightEye;
+            return eyes;
+        }; 
+
         this.render = function() {
             self._resize();
         }
