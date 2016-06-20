@@ -1,4 +1,4 @@
-Simple and funny library that adds eyes that follow your cursor. There are no dependencies. Checkout [demo](https://krustnic.github.io/paranoia.js)
+This is a fork of [paranoia.js](https://krustnic.github.io/paranoia.js) - simple and funny library that adds eyes that track your cursor. Fork add eyes frown if cursor get too close to them. There are no dependencies. Checkout [demo](https://zlob.github.io/paranoia.js)
 
 Usage:
 
@@ -41,10 +41,11 @@ $(window).load(function() {
         appleSize   : 20,
         color       : "#FFFFFF",
         border      : '5',
-        borderColor : 'black',
+        borderColor : 'black'
     } );        
 });
 
 ```
 
 This code do the same as code above in one method. Options x and y there is a coordinates of center between eyes, option l is a distance between them.
+
