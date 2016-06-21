@@ -1,4 +1,4 @@
-This is a fork of [paranoia.js](https://krustnic.github.io/paranoia.js) - simple and funny library that adds eyes that track your cursor. Fork add eyes frown if cursor get too close to them. There are no dependencies. Checkout [demo](https://zlob.github.io/paranoia.js)
+This is a fork of [paranoia.js](https://krustnic.github.io/paranoia.js) - simple and funny library that adds eyes that track your cursor. Fork add eyes frown if cursor get too close to them. There are no dependencies. Checkout [demo](https://zlob.github.io/frown.js)
 
 Usage:
 
