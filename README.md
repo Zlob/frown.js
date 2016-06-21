@@ -6,23 +6,33 @@ Usage:
 // Check that all images loaded
 $(window).load(function() {
     ParanoiaJS.add( "#img1", {
-        x           : 60,
-        y           : 30,   
-        size        : 100,
-        appleSize   : 20,
-        color       : "#FFFFFF",
-        border      : '5',
-        borderColor : 'black',
+        x               : 60,
+        y               : 30,   
+        size            : 100,
+        color           : "#FFFFFF",
+        borderColor     : 'black',
+        borderSize      : '5',
+        eyeballSize     : 20,
+        eyeballShift    : 20,
+        emoteColor      : "white",
+        emoteSize       : 0.75,
+        emoteborderColor: "#000000",
+        emoteBorderSize : '5'
     } );        
 
     ParanoiaJS.add( "#img1", {
-        x         : 115,
-        y         : 30,
-        size      : 100,
-        appleSize : 20,
-        color     : "#FFFFFF",
-        border      : '5',
-        borderColor : 'black',
+        x               : 115,
+        y               : 30,
+        size            : 100,
+        color           : "#FFFFFF",
+        borderColor     : 'black',
+        borderSize      : '5',
+        eyeballSize     : 20,
+        eyeballShift    : 20,
+        emoteColor      : "white",
+        emoteSize       : 0.75,
+        emoteborderColor: "#000000",
+        emoteBorderSize : '5'
     } ); 
 });
 
@@ -34,14 +44,19 @@ This code adds two eyes at positions (60, 30) and (115, 30) relative to element 
 // You can use helper to create pair of eyes
 $(window).load(function() {
     ParanoiaJS.addPair( "#img1", {
-        x           : 87,
-        y           : 30,
-        l           : 55
-        size        : 100,
-        appleSize   : 20,
-        color       : "#FFFFFF",
-        border      : '5',
-        borderColor : 'black'
+        x               : 87,
+        y               : 30,
+        l               : 55
+        size            : 100,
+        color           : "#FFFFFF",
+        borderColor     : 'black',
+        borderSize      : '5',
+        eyeballSize     : 20,
+        eyeballShift    : 20,
+        emoteColor      : "white",
+        emoteSize       : 0.75,
+        emoteborderColor: "#000000",
+        emoteBorderSize : '5'
     } );        
 });
 
