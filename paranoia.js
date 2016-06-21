@@ -4,7 +4,7 @@
         '<svg width="50" height="50" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">',
         ' <g>',
         '  <circle name="eye"   fill="#ffffff" stroke="#000000" stroke-width="5" cx="60" cy="60" r="50" />',
-        '  <circle name="eyeball" fill="#000000" stroke="#000000" stroke-width="5" stroke-linejoin="null" stroke-linecap="null" cx="80" cy="60" r="12"/>',
+        '  <circle name="eyeball" fill="#000000" stroke="#000000" stroke-width="5" stroke-linejoin="null" stroke-linecap="null" cx="60" cy="60" r="12"/>',
         ' </g>',
         '</svg>'
     ].join("");
@@ -39,14 +39,21 @@
         
         // Default options
         this.options = {
-            "x"         : 0,
-            "y"         : 0,
-            "size"      : 50,
-            "eyeballSize" : 12,
-            "color"     : "#FFFFFF",
-            "emoteColor": "white",
-            "borderColor" : "#000000",
-            'borderSize' : '5'
+            "x"                 : 0,
+            "y"                 : 0,
+            "size"              : 50,
+            "color"             : "#FFFFFF",
+            "borderColor"       : "#000000",
+            'borderSize'        : '5',
+            "eyeballSize"       : 12,
+            "eyeballShift"      : 20,
+            //веки
+            "emoteColor"        : "white",
+            "emoteSize"         : 0.75,
+            "emoteborderColor"  : "#000000",
+            'emoteBorderSize'   : '5'
+            
+
         };
 
         // Replace default optinos
@@ -82,14 +89,15 @@
         this.eyeElement.setAttribute("stroke-width", this.options["borderSize"]);
         
         this.topElement.setAttribute("fill", this.options["emoteColor"]);
-        this.topElement.setAttribute("stroke", this.options["borderColor"]);
-        this.topElement.setAttribute("stroke-width", this.options["borderSize"]);
+        this.topElement.setAttribute("stroke", this.options["emoteborderColor"]);
+        this.topElement.setAttribute("stroke-width", this.options["emoteBorderSize"]);
         
         this.bottomElement.setAttribute("fill", this.options["emoteColor"]);
-        this.bottomElement.setAttribute("stroke", this.options["borderColor"]);
-        this.bottomElement.setAttribute("stroke-width", this.options["borderSize"]);
+        this.bottomElement.setAttribute("stroke", this.options["emoteborderColor"]);
+        this.bottomElement.setAttribute("stroke-width", this.options["emoteBorderSize"]);
         
         this.eyeballElement.setAttribute("r", this.options["eyeballSize"]);
+        this.eyeballElement.setAttribute("cx", parseInt(this.options["eyeballShift"]) + parseInt(this.eyeballElement.getAttribute("cx")));
         
         document.body.appendChild( this.cloneEyeObject );
 
@@ -111,7 +119,7 @@
         var len = Math.pow(Math.pow(x1-x,2) + Math.pow(y1-y,2), 1/2);
         var angle = Math.PI/2;
         if(len <= minSuspicion){
-            var angle = Math.PI/2 - ((1-len/minSuspicion) *  7*Math.PI/18);   
+            var angle = Math.PI/2 - ((1-len/minSuspicion) *  Math.PI/2 * this.options.emoteSize);   
         }
         var xr = 60 + (Math.cos(-angle) * 50 );
         var yr = 60 + (Math.sin(-angle) * 50 );
@@ -139,6 +147,12 @@
                 
         var x1 = cloneEyeObjectPos.left + cloneEyeObjectPos.width/2;
         var y1 = cloneEyeObjectPos.top  + cloneEyeObjectPos.height/2; 
+        
+        var l = Math.pow(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2), 1/2); //  distance between mouse and eye center
+        if(l < this.options.eyeballShift){
+            this.eyeballElement.setAttribute( "cx", 60 + l ); 
+        }
+        
                 
         var angle = Math.atan2( y2 - y1, x2 - x1 ) * (180/Math.PI) ;
 
