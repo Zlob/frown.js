@@ -50,7 +50,7 @@
             //веки
             "emoteColor"        : "white",
             "emoteSize"         : 0.75,
-            "emoteborderColor"  : "#000000",
+            "emoteBorderColor"  : "#000000",
             'emoteBorderSize'   : '5'
             
 
@@ -89,11 +89,11 @@
         this.eyeElement.setAttribute("stroke-width", this.options["borderSize"]);
         
         this.topElement.setAttribute("fill", this.options["emoteColor"]);
-        this.topElement.setAttribute("stroke", this.options["emoteborderColor"]);
+        this.topElement.setAttribute("stroke", this.options["emoteBorderColor"]);
         this.topElement.setAttribute("stroke-width", this.options["emoteBorderSize"]);
         
         this.bottomElement.setAttribute("fill", this.options["emoteColor"]);
-        this.bottomElement.setAttribute("stroke", this.options["emoteborderColor"]);
+        this.bottomElement.setAttribute("stroke", this.options["emoteBorderColor"]);
         this.bottomElement.setAttribute("stroke-width", this.options["emoteBorderSize"]);
         
         this.eyeballElement.setAttribute("r", this.options["eyeballSize"]);
