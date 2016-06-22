@@ -55,7 +55,7 @@ $(window).load(function() {
         eyeballShift    : 20,
         emoteColor      : "white",
         emoteSize       : 0.75,
-        emoteborderColor: "#000000",
+        emoteBorderColor: "#000000",
         emoteBorderSize : '5'
     } );        
 });
