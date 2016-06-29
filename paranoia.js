@@ -146,13 +146,7 @@
         var cloneEyeObjectPos = this.cloneEyeObject.getBoundingClientRect();
                 
         var x1 = cloneEyeObjectPos.left + cloneEyeObjectPos.width/2;
-        var y1 = cloneEyeObjectPos.top  + cloneEyeObjectPos.height/2; 
-        
-        var l = Math.pow(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2), 1/2); //  distance between mouse and eye center
-        if(l < this.options.eyeballShift){
-            this.eyeballElement.setAttribute( "cx", 60 + l ); 
-        }
-        
+        var y1 = cloneEyeObjectPos.top  + cloneEyeObjectPos.height/2;              
                 
         var angle = Math.atan2( y2 - y1, x2 - x1 ) * (180/Math.PI) ;
 
