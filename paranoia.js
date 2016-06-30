@@ -136,10 +136,9 @@
     // Relactive to parent image
     Eye.prototype.move = function( x, y ) {
         var parentPostion = this._element.getBoundingClientRect();        
-        
         this.cloneEyeObject.style.position = "absolute";
-        this.cloneEyeObject.style.left = parentPostion["left"] + x + "px";
-        this.cloneEyeObject.style.top  = parentPostion["top"]  + y + "px";
+        this.cloneEyeObject.style.left = parentPostion["left"] + (x + pageXOffset) + "px";
+        this.cloneEyeObject.style.top  = parentPostion["top"]  + (y + pageYOffset) + "px";
     }
         
     Eye.prototype.render = function( x2, y2 ) {               
